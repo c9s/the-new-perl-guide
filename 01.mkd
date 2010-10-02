@@ -1,0 +1,135 @@
+# 新世紀 Perl 指引手札
+
+(此篇文章仍在草稿階段)
+
+## 前言
+
+近幾年 Perl 語言除了 Perl 6 實做之 Rakudo 1.0 版本於今年首次釋出之外， Perl
+程式設計圈相繼出現許多新式模組如 Moose, AutoBox, AnyEvent, Plack 等等替 Perl
+改頭換面的模組。
+
+但是由於現今台灣內 Perl 相關叢書並無此相關知識，而使得新的 Perl
+語言學習者無此指引，而致使 Perl 語言給大眾的印象仍停留在古老的 CGI 時代。
+
+### 新的模組工具 - CPAN Minus
+
+原有的 CPAN Shell
+工具，由於歷史悠久，許多功能以及介面有許多年都無所改進。以及，原有的 CPAN Shell
+工具相依於過多模組，使得尚未對 CPAN Shell 熟悉的新手，對於安裝、設置 CPAN Shell
+造成極大的恐懼。
+『為什麼要裝這麼多東西呢』『為什麼出現這麼多訊息』『為什麼要回答這麼多問題』等等，使得許多
+Perl 新手或是為了安裝由 Perl 所撰寫而成的工具的使用者而疑惑不解。
+
+
+但在這之前，Ruby 程式語言的發展，一個叫做 GEM 的模組安裝工具，卻是相當簡單、快速可以使用的。
+
+基於此，日本的宮川達宴 (Miyagawa) 先生，於今年年初 (2010年) 釋出了 cpanminus 第一版，對於 cpanminus 的敘述:
+
+    cpanminus is a script to get, unpack, build and install modules from
+    CPAN.
+
+    Why? It's dependency free, requires zero configuration, and stands alone
+    -- but it's maintainable and extensible with plugins and friendly to
+    shell scripting. When running, it requires only 10MB of RAM.
+
+簡而言之，cpanminus 是一用來下載、解包裝、建置、安裝 CPAN 模組的工具。為什麼呢？
+因為他是無相依性，不需設定，獨立的腳本。 並且他是可維護、可延伸並且對於撰寫 Shell 腳本是相當容易的。
+而且，他在執行的時候，只需要 10MB 的記憶體空間。
+
+cpanminus 與 CPAN Shell 或是 CPANPLUS 之不同在於，cpanminus 相依性極少，並且
+CPAN Minus 不需要任何安裝，只需要將該打包好的 cpanminus 執行檔儲存於你自己的檔案系統內便可以使用。
+
+此外，cpanminus 也不需額外自行調整設定 (zero-config) ，也可讓使用者不需系統管理權限也能輕易安裝模組 (使用 local::lib)。
+
+至於為什麼要寫 cpanminus 呢？ Miyagawa 先生在 cpanminus 模組內的讀我檔內寫下，向 Perl 社群解釋:
+
+    But why a new client?
+
+    First of all, I have no intention to dis CPAN or CPANPLUS developers.
+    Don't get me wrong. They're great tools I've used for *literally* years
+    (you know how many modules I have on CPAN, right?). I really respect
+    their efforts of maintaining the most important tools in the CPAN
+    toolchain ecosystem.
+
+    However, for less experienced users (mostly from outside the Perl
+    community), or even really experienced Perl developers who know how to
+    shoot themselves in their feet, setting up the CPAN toolchain often
+    feels like yak shaving, especially when all they want to do is just
+    install some modules and start writing code.
+
+    首先呢，我並無要 dis CPAN 或是 CPANPLUS 的開發者，別誤會我了。
+    他們是相當棒的工具，我已經使用他們多年 (你也知道我在 CPAN 上頭寫了多少模組了對吧?)
+
+    我真的相當尊敬他們的維護這些 CPAN 生態系統中重要工具的努力。
+
+    然而，對於比較無經驗的使用者們 (大多數是 Perl 社群之外的使用者 ) 或者是相當有經驗的 
+    Perl 開發者，對他們來說設定 CPAN toolchain 經常像是... XXX
+
+    事實上對他們來說，他們經常只是想要安裝一些模組並且開始撰寫一些程式的時候。
+
+
+    In particular, here are the few issues I've observed:
+
+    *   They ask too many questions and do not provide enough sane defaults.
+        A normal user doesn't (and shouldn't have to) know what's the right
+        answer for the question `Parameters for the 'perl Build.PL' command?
+        []'
+
+    *   They provide very noisy output by default.
+
+    *   They fetches and rebuild their indexes almost every day, and this
+        takes time.
+
+    *   ... and they hog 200MB of memory and thrashes/OOMs on my 256MB VPS
+
+    事實上，這裡是一些我有觀察到的現有 CPAN 工具的問題
+
+    * 那些工具問了太多問題，病且沒有提供足夠的恰當的預設值，
+        一個普通的使用者並不知道（也不需要知道）哪些才是正確的答案。
+        試著回答此問題的答案？ 
+
+        `Parameters for the 'perl Build.PL' []'
+
+    * 他們預設輸出了太多的資訊。
+
+    * 他們幾乎每天會重新抓取並且會建置索引，這相當花費時間。
+
+    * ... 他們會使用到將近 200MB 的記憶體工件，以及 thrashes/00Ms 在我的 256MB VPS 上。
+
+    cpanminus is designed to be very quiet (but logs all output to
+    `~/.cpanm/build.log') and to pick the sanest possibledefaults without
+    asking any questions -- to *just work*.
+
+    cpanminus 是為了安靜而設計的。 (XXX) (但是訊息紀錄檔會輸出至 ~/.cpanm/build.log 內。)
+
+    並且會提供恰當的提問 -- *just work*.
+
+
+    Note that most of these problems with existing tools are rare, or are
+    just overstated. They might already be fixed, or can be configured to
+    work nicer. For instance, the latest CPAN.pm dev release has a much
+    better first time configuration experience than ever before.
+
+    I know there's a reason for them to have many options and questions,
+    because they're meant to work everywhere for everybody.
+
+    Of course I should have contributed back to CPAN/CPANPLUS instead of
+    writing a new client, but CPAN.pm is nearly impossible (for anyone other
+    than andk or xdg) to maintain (that's why CPANPLUS was born, right?) and
+    CPANPLUS is a huge beast for me to start working on.
+
+
+
+
+
+
+
+
+### 新的物件導向系統 - Moose
+
+
+## 安裝 CPAN Minus
+
+Perl 新手的第一步，就是安裝 CPAN Minus，欲安裝 CPAN Minus ，
+
+
