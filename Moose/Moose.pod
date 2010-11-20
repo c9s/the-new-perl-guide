@@ -11,6 +11,9 @@ type constraint checking - 型別檢查
 metaclass - 超類別
 method - 方法
 exported function - 匯出函式
+role - 類別角色
+trigger - 觸發器(?)
+
 
 =pod
 
@@ -48,7 +51,7 @@ Moose - Perl5 後現代物件導向系統
 
 Moose 是 Perl5 物件導向系統的延伸模組。
 
-主要的目標是讓 Perl5 的物件導向程式設計更容易、更一致、不乏味。
+主要的目標是讓 Perl5 的物件導向程式設計更容易、更一致、更有趣。
 
 使用 Moose 你可以少花更多時間思考如何實做物件導向的機制，而更著重於你的程式碼。
 
@@ -118,7 +121,7 @@ Moose 提供了許多的方法至你的類別內，大多都是經由 L<Moose::O
 =back
 
 =head1 匯出的函式 (EXPORTED FUNCTIONS)
-
+Moose 會將一些函式匯出到類別的名稱空間中，以用來幫助設定此類別。（由於這些函數是在此類別的名稱空間中）所以這些函數可以在這個類別中直接使用（這段我不太知道該如何翻的通順...）
 Moose will export a number of functions into the class's namespace which
 may then be used to set up the class. These functions all work directly
 on the current class.
@@ -127,19 +130,23 @@ on the current class.
 
 =item B<extends (@superclasses)>
 
+這個函式用以設定此類別的父類別
 This function will set the superclass(es) for the current class.
 
+Moose 建議使用這個方法而非 C<use base> ， C<extends> 除了可以取代 C<use base> 堆疊 C<@ISA> 的功能之外，它還能保證一些沒有父類別的類別也能繼承 L<Moose::Object> 。
 This approach is recommended instead of C<use base>, because C<use base>
 actually C<push>es onto the class's C<@ISA>, whereas C<extends> will
 replace it. This is important to ensure that classes which do not have
 superclasses still properly inherit from L<Moose::Object>.
 
+每個父類別會包含一組雜湊選項，不過目前只有支援 L<-version|Class::MOP/Class Loading Options> 。
 Each superclass can be followed by a hash reference with options. Currently,
 only L<-version|Class::MOP/Class Loading Options> is recognized:
 
     extends 'My::Parent'      => { -version => 0.01 },
             'My::OtherParent' => { -version => 0.03 };
 
+如果版本號不同的話則會出現錯誤訊息。
 An exception will be thrown if the version requirements are not
 satisfied.
 
@@ -316,6 +323,7 @@ quick example (soon to be expanded into a Moose::Cookbook recipe):
   );
 
 在此範例中，樹 (Tree) 的 package 會有 C<parent_node> 以及 C<siblings> 方法，
+
 In this example, the Tree package gets C<parent_node> and C<siblings> methods,
 which delegate to the C<node> and C<children> methods (respectively) of the Tree
 instance stored in the C<parent> slot.
