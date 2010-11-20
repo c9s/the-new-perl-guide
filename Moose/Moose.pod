@@ -1,5 +1,14 @@
 # Moose translation on typewith.me
 # http://typewith.me/bWn2dejlEo
+=head1 索引
+
+attribute - 類別屬性
+accessor  - 類別屬性存取器
+coercion - 型別轉換
+type constraint checking - 型別檢查
+metaclass - 超類別
+method - 方法
+
 =pod
 
 =head1 名稱
@@ -91,16 +100,17 @@ C<has> 來定義。
 此外 C<new> 的方法是由 L<Moose::Object> 所繼承而來的，該方法所做的事情，
 包含了初始化物件的所有屬性，置入合適的預設值，以及型別檢查 (type constraint checking)，或是型別轉換 (type coercion)。
 
-=head1 PROVIDED METHODS
+=head1 方法 (provided methods)
 
-Moose provides a number of methods to all your classes, mostly through the
-inheritance of L<Moose::Object>. There is however, one exception.
+Moose 提供了許多的方法至你的類別內，大多都是經由 L<Moose::Object> 而來。
+
+當然也有一些例外，譬如以下:
 
 =over 4
 
 =item B<meta>
 
-This is a method which provides access to the current class's metaclass.
+此方法為目前的類別提供了取得超類別 (metaclass) 的途徑。
 
 =back
 
@@ -806,23 +816,23 @@ See L<http://search.cpan.org/search?query=MooseX::> for extensions.
 
 =back
 
-=head2 Books
+=head2 書籍
 
 =over 4
 
-=item The Art of the MetaObject Protocol
+=item 超物件協定的藝術 (The Art of the MetaObject Protocol)
 
-I mention this in the L<Class::MOP> docs too, this book was critical in
-the development of both modules and is highly recommended.
+原作者在 L<Class::MOP> 內提到了此書，該書是開發兩個模組中最被推薦的一書。
 
 =back
 
-=head2 Papers
+=head2 論文
 
 =over 4
 
 =item L<http://www.cs.utah.edu/plt/publications/oopsla04-gff.pdf>
 
+此份論文 (在 #moose IRC 頻道上的 lbr 推薦) ...
 This paper (suggested by lbr on #moose) was what lead to the implementation
 of the C<super>/C<override> and C<inner>/C<augment> features. If you really
 want to understand them, I suggest you read this.
