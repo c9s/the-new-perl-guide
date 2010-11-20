@@ -1,13 +1,16 @@
-# Moose translation on typewith.me
-# http://typewith.me/bWn2dejlEo
+http://typewith.me/bWn2dejlEo
+
 =head1 索引
 
 attribute - 類別屬性
 accessor  - 類別屬性存取器
+slot      - 類別屬性存取器
+
 coercion - 型別轉換
 type constraint checking - 型別檢查
 metaclass - 超類別
 method - 方法
+exported function - 匯出函式
 
 =pod
 
@@ -114,7 +117,7 @@ Moose 提供了許多的方法至你的類別內，大多都是經由 L<Moose::O
 
 =back
 
-=head1 EXPORTED FUNCTIONS
+=head1 匯出的函式 (EXPORTED FUNCTIONS)
 
 Moose will export a number of functions into the class's namespace which
 may then be used to set up the class. These functions all work directly
@@ -215,8 +218,9 @@ coerced.
 
 =item I<lazy =E<gt> (1|0)>
 
-This will tell the class to not create this slot until absolutely necessary.
-If an attribute is marked as lazy it B<must> have a default supplied.
+該參數告訴類別除非必要，否則在使用到之前不要建立此類別屬性存取器。(slot)
+
+如果一個類別屬性使用了 lazy 屬性，那麼預設值必須被提供。
 
 =item I<auto_deref =E<gt> (1|0)>
 
@@ -311,6 +315,7 @@ quick example (soon to be expanded into a Moose::Cookbook recipe):
       }
   );
 
+在此範例中，樹 (Tree) 的 package 會有 C<parent_node> 以及 C<siblings> 方法，
 In this example, the Tree package gets C<parent_node> and C<siblings> methods,
 which delegate to the C<node> and C<children> methods (respectively) of the Tree
 instance stored in the C<parent> slot.
@@ -824,7 +829,7 @@ See L<http://search.cpan.org/search?query=MooseX::> for extensions.
 
 原作者在 L<Class::MOP> 內提到了此書，該書是開發兩個模組中最被推薦的一書。
 
-=back
+n=back
 
 =head2 論文
 
@@ -866,9 +871,7 @@ can contribute.
 
 =head1 AUTHOR
 
-Moose is an open project, there are at this point dozens of people who have
-contributed, and can contribute. If you have added anything to the Moose
-project you have a commit bit on this file and can add your name to the list.
+Moose 是開放原始碼計畫，這裡有許多人已經貢獻了許多程式碼。 如果你為 Moose 貢獻了程式碼，並且有修改這個檔案的權限，你可以將你的名字加入以下的名單中。
 
 =head2 CABAL
 
