@@ -82,16 +82,14 @@ Moose 提供了許多便利的方法來使得類別的設計、定義更容易�
 
 這裡是 Moose 的一些方法，可以用來設計你的類別。
 
-When you C<use Moose>, Moose will set the class's parent class to
-L<Moose::Object>, I<unless> the class using Moose already has a parent
-class. In addition, specifying a parent with C<extends> will change the parent
-class.
+當你使用了 C<use Moose>, Moose 會設定該類別的父類別為 L<Moose::Object>，
+I<除非> 使用 Moose 的該類別已經有了別的父類別。 此外，如果要指定父類別，可以使用 C<extends> 來改變父類別。
 
-Moose will also manage all attributes (including inherited ones) that are
-defined with C<has>. And (assuming you call C<new>, which is inherited from
-L<Moose::Object>) this includes properly initializing all instance slots,
-setting defaults where appropriate, and performing any type constraint checking
-or coercion.
+Moose 也同時管理所有的類別屬性 (attribute) (包含繼承而來的)。 類別屬性使用
+C<has> 來定義。
+
+此外 C<new> 的方法是由 L<Moose::Object> 所繼承而來的，該方法所做的事情，
+包含了初始化物件的所有屬性，置入合適的預設值，以及型別檢查 (type constraint checking)，或是型別轉換 (type coercion)。
 
 =head1 PROVIDED METHODS
 
