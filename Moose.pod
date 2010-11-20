@@ -1,10 +1,10 @@
 =pod
 
-=head1 NAME
+=head1 名稱
 
-Moose - A postmodern object system for Perl 5
+Moose - Perl5 後現代物件導向系統
 
-=head1 SYNOPSIS
+=head1 概觀
 
   package Point;
   use Moose; # automatically turns on strict and warnings
@@ -30,49 +30,46 @@ Moose - A postmodern object system for Perl 5
       $self->z(0);
   };
 
-=head1 DESCRIPTION
+=head1 敘述
 
-Moose is an extension of the Perl 5 object system.
+Moose 是 Perl5 物件導向系統的延伸模組。
 
-The main goal of Moose is to make Perl 5 Object Oriented programming
-easier, more consistent and less tedious. With Moose you can to think
-more about what you want to do and less about the mechanics of OOP.
+主要的目標是讓 Perl5 的物件導向程式設計更容易、更一致、不乏味。
 
-Additionally, Moose is built on top of L<Class::MOP>, which is a
-metaclass system for Perl 5. This means that Moose not only makes
-building normal Perl 5 objects better, but it provides the power of
-metaclass programming as well.
+使用 Moose 你可以少花更多時間思考如何實做物件導向的機制，而更著重於你的程式碼。
 
-=head2 New to Moose?
+此外，Moose 是以 L<Class::MOP> 為基礎，L<Class::MOP> 是 Perl5 的超類別系統 (metaclass system)。 這意味著 Moose 不只是為了使一般的 Perl 5 物件更好，也提供了超類別的程式設計的威力。
 
-If you're new to Moose, the best place to start is the
-L<Moose::Manual> docs, followed by the L<Moose::Cookbook>. The intro
-will show you what Moose is, and how it makes Perl 5 OO better.
+=head2 剛開始使用 Moose?
 
-The cookbook recipes on Moose basics will get you up to speed with
-many of Moose's features quickly. Once you have an idea of what Moose
-can do, you can use the API documentation to get more detail on
-features which interest you.
+如果你剛開始使用 Moose ，最好的起點就是 L<Moose::Manual> 文件。在 L<Moose::Cookbook> 內也連結到 L<Moose::Manual>。
 
-=head2 Moose Extensions
+此份介紹會介紹你什麼是 Moose ，以及如何使得 Perl 5 的物件導向更好。
 
-The C<MooseX::> namespace is the official place to find Moose extensions.
-These extensions can be found on the CPAN.  The easiest way to find them
-is to search for them (L<http://search.cpan.org/search?query=MooseX::>),
-or to examine L<Task::Moose> which aims to keep an up-to-date, easily
-installable list of Moose extensions.
+這些 Moose 基礎的食譜將會幫助你快速學習 Moose 的功能。 一旦你了解了 Moose 能作什麼，你可以使用 API 文件來取得關於 Moose 功能的更多細節。
 
-=head1 TRANSLATIONS
+=head2 Moose 的延伸模組
 
-Much of the Moose documentation has been translated into other languages.
+以 C<MooseX::> 為開頭的名稱空間是用來放置 Moose 延伸模組用的。
+
+這些延伸模組可以在 CPAN 上找到。 找到他們的最簡單的方式就是到  (L<http://search.cpan.org/search?query=MooseX::>)，
+或者嘗試使用 L<Task::Moose>。
+
+L<Task::Moose> 提供了常用的 Moose 延伸模組於安裝列表。
+
+=head1 翻譯
+
+有許多 Moose 文件已經被翻譯至其他語言。
 
 =over 4
 
-=item Japanese
+=item 日文
 
-Japanese docs can be found at
-L<http://perldoc.perlassociation.org/pod/Moose-Doc-JA/index.html>. The
-source POD files can be found in GitHub:
+日文文件可以在下列網址找到
+
+L<http://perldoc.perlassociation.org/pod/Moose-Doc-JA/index.html>
+
+Pod 文件則可以在 Github 上找到:
 L<http://github.com/jpa/Moose-Doc-JA>
 
 =back
