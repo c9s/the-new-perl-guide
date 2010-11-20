@@ -1,3 +1,5 @@
+# Moose translation on typewith.me
+# http://typewith.me/bWn2dejlEo
 =pod
 
 =head1 名稱
