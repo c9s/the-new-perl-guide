@@ -74,11 +74,11 @@ L<http://github.com/jpa/Moose-Doc-JA>
 
 =back
 
-=head1 BUILDING CLASSES WITH MOOSE
+=head1 使用 Moose 設計類別
 
-Moose makes every attempt to provide as much convenience as possible during
-class construction/definition, but still stay out of your way if you want it
-to. Here are a few items to note when building classes with Moose.
+Moose 提供了許多便利的方法來使得類別的設計、定義更容易，並且讓你可以用你自己的方式來使用他。
+
+這裡是 Moose 的一些方法，可以用來設計你的類別。
 
 When you C<use Moose>, Moose will set the class's parent class to
 L<Moose::Object>, I<unless> the class using Moose already has a parent
