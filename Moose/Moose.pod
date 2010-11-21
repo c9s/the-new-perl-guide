@@ -1,4 +1,5 @@
 http://typewith.me/bWn2dejlEo
+=encoding utf8
 
 =head1 索引
 
