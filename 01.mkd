@@ -144,3 +144,11 @@ Perl 新手的第一步，就是安裝 CPAN Minus，欲安裝 CPAN Minus ，
 
 ## 建置模組
 
+* Module::Setup
+* Module::Starter
+* ShipIt
+* Dist::Zilla
+
+## 測試
+
+....
