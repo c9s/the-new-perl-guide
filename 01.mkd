@@ -115,21 +115,32 @@ cpanminus 與 CPAN Shell 或是 CPANPLUS 之不同在於，cpanminus 相依性�
 >    CPANPLUS is a huge beast for me to start working on.
 
 
-### 新物件導向系統 - Moose
+### 後現代物件導向系統 - Moose
 
 (contributions are welcome)
 
-### 新事件循環技術 (Event loop programming)
+### 事件循環 (Event loop programming)
 
-AnyEvent ...
+* AnyEvent
+* Coro
+* POE
 
-### 新網頁技術
+### 網頁技術
+
+* Plack
+
+#### 網頁框架
+
+* Catalyst
+* Dancer
+* Mojo
+* Jifty
 
 (contributions are welcome)
-
 
 ## 安裝 CPAN Minus
 
 Perl 新手的第一步，就是安裝 CPAN Minus，欲安裝 CPAN Minus ，
 
+## 建置模組
 
